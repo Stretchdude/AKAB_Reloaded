@@ -43,7 +43,14 @@ int main(void) {
 
 	amikbd_init();
 
-	while(1);
+	uint8_t leds = 0;
+	while(1){ 
+		keyb_commands[0] = 0xED;
+		keyb_commands[1] = leds
+		ps2keyb_sendCommand(keyb_commands, 2);
+		leds ^= 3;
+		_delay_ms(100);
+	};
 
     return 0;
 }
